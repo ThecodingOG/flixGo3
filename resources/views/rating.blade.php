@@ -11,14 +11,26 @@
                         <form method="POST" action="/rating" enctype="multipart/form-data">
                             @csrf
 
-                            {{$movie->title}} <br>
-                            <img src="coverPhotos/{{$movie->picture}}" alt="sorry"> <br>
+                            <h1>Rate this movie, {{$movie->title}} </h1>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <input id="movie" type="text" class="form-control @error('movie') is-invalid @enderror" name="movie" value="{{$movie->title}}" hidden autocomplete="movie" autofocus>
+
+                                    @error('movie')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
 
                             <div class="row mb-3">
                                 <label for="star" class="col-md-4 col-form-label text-md-end">Star this movie up to 5-stars</label>
 
                                 <div class="col-md-6">
-                                    <input id="star" type="star" class="form-control @error('star') is-invalid @enderror" name="star" value="{{ old('star') }}" required autocomplete="star" autofocus>
+                                    <input id="star" type="text" class="form-control @error('star') is-invalid @enderror" name="star" value="{{ old('star') }}" required autocomplete="star" autofocus>
 
                                     @error('star')
                                     <span class="invalid-feedback" role="alert">

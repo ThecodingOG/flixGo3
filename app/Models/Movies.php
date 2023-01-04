@@ -13,8 +13,5 @@ class Movies extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function rating(){
-        return $this->belongsToMany(Rating::class);
-    }
 
 }

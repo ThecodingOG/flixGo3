@@ -28,6 +28,9 @@ Route::get('/catalogue', [HomeController::class, 'catalogue']);
 Route::get('/details', [HomeController::class, 'details']);
 Route::get('/faq', [HomeController::class, 'faq']);
 Route::get('/about', [HomeController::class, 'about']);
+Route::post('/search', [HomeController::class, 'search']);
+Route::get('/comments', [HomeController::class, 'comments']);
+
 
 
 //Route::get('/about', [VisitorController::class, 'about']);

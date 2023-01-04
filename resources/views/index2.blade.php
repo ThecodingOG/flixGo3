@@ -61,27 +61,22 @@
 								</li>
 								<!-- end dropdown -->
 
-								<!-- dropdown -->
-								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="/catalogue" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
-
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-										<li><a href="/catalogue">Catalog Grid</a></li>
-										<li><a href="/catalogue">Catalog List</a></li>
-									</ul>
-								</li>
-								<!-- end dropdown -->
 
 								<li class="header__nav-item">
 									<a href="/details" class="header__nav-link">Details</a>
 								</li>
 
 								<li class="header__nav-item">
-									<a href="/faq" class="header__nav-link">Help</a>
+									<a href="/comments" class="header__nav-link">Comments</a>
 								</li>
 
                                 <li class="header__nav-item">
                                     <a href="/about" class="header__nav-link">about</a>
+                                </li>
+
+
+                                <li class="header__nav-item">
+                                    <a href="/faq" class="header__nav-link">Help</a>
                                 </li>
 
 							</ul>
@@ -89,6 +84,12 @@
 
                             <!-- header auth -->
                             <div class="header__auth">
+                                <form action="/search" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="text" placeholder="Search Movie" name="search">
+                                    <input type="submit" value="submit" name="submit">
+                                </form>
+
 
                                 @if (Route::has('login'))
                                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

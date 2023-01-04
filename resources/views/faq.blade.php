@@ -35,107 +35,108 @@
 </head>
 <body class="body">
 
-	<!-- header -->
-	<header class="header">
-		<div class="header__wrap">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="header__content">
-							<!-- header logo -->
-							<a href="index.blade.php" class="header__logo">
-								<img src="img/logo.svg" alt="">
-							</a>
-							<!-- end header logo -->
+<!-- header -->
+<header class="header">
+    <div class="header__wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__content">
+                        <!-- header logo -->
+                        <a href="index.blade.php" class="header__logo">
+                            <img src="img/logo.svg" alt="">
+                        </a>
+                        <!-- end header logo -->
 
-                            <!-- header nav -->
-                            <ul class="header__nav">
-                                <!-- dropdown -->
-                                <li class="header__nav-item">
-                                    <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                        <!-- header nav -->
+                        <ul class="header__nav">
+                            <!-- dropdown -->
+                            <li class="header__nav-item">
+                                <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 
-                                    <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-                                        <li><a href="/home">Home slideshow bg</a></li>
-                                        <li><a href="/home">Home static bg</a></li>
-                                    </ul>
-                                </li>
-                                <!-- end dropdown -->
+                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
+                                    <li><a href="/home">Home slideshow bg</a></li>
+                                    <li><a href="/home">Home static bg</a></li>
+                                </ul>
+                            </li>
+                            <!-- end dropdown -->
 
-                                <!-- dropdown -->
-                                <li class="header__nav-item">
-                                    <a class="dropdown-toggle header__nav-link" href="/catalogue" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
 
-                                    <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-                                        <li><a href="/catalogue">Catalog Grid</a></li>
-                                        <li><a href="/catalogue">Catalog List</a></li>
-                                    </ul>
-                                </li>
-                                <!-- end dropdown -->
+                            <li class="header__nav-item">
+                                <a href="/details" class="header__nav-link">Details</a>
+                            </li>
 
-                                <li class="header__nav-item">
-                                    <a href="/details" class="header__nav-link">Details</a>
-                                </li>
+                            <li class="header__nav-item">
+                                <a href="/comments" class="header__nav-link">Comments</a>
+                            </li>
 
-                                <li class="header__nav-item">
-                                    <a href="/faq" class="header__nav-link">Help</a>
-                                </li>
+                            <li class="header__nav-item">
+                                <a href="/about" class="header__nav-link">about</a>
+                            </li>
 
-                                <li class="header__nav-item">
-                                    <a href="/about" class="header__nav-link">about</a>
-                                </li>
 
-                            </ul>
-                            <!-- end header nav -->
+                            <li class="header__nav-item">
+                                <a href="/faq" class="header__nav-link">Help</a>
+                            </li>
 
-                            <!-- header auth -->
-                            <div class="header__auth">
+                        </ul>
+                        <!-- end header nav -->
 
-                                @if (Route::has('login'))
-                                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                        @auth
-                                            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Signed In</a>
-                                        @else
-                                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Log in</a>
+                        <!-- header auth -->
+                        <div class="header__auth">
+                            <form action="/search" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <input type="text" placeholder="Search Movie" name="search">
+                                <input type="submit" value="submit" name="submit">
+                            </form>
 
-                                            @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Register</a>
-                                            @endif
-                                        @endauth
-                                    </div>
-                                @endif
-                            </div>
-                            <!-- end header auth -->
 
-							<!-- header menu btn -->
-							<button class="header__btn" type="button">
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
-							<!-- end header menu btn -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                            @if (Route::has('login'))
+                                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                    @auth
+                                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Signed In</a>
+                                    @else
+                                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Log in</a>
 
-		<!-- header search -->
-		<form action="#" class="header__search">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="header__search-content">
-							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Register</a>
+                                        @endif
+                                    @endauth
+                                </div>
+                            @endif
+                        </div>
+                        <!-- end header auth -->
 
-							<button type="button">search</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-		<!-- end header search -->
-	</header>
-	<!-- end header -->
+                        <!-- header menu btn -->
+                        <button class="header__btn" type="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <!-- end header menu btn -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- header search -->
+    <form action="#" class="header__search">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__search-content">
+                        <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
+
+                        <button type="button">search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- end header search -->
+</header>
+<!-- end header -->
 
 	<!-- page title -->
 	<section class="section section--first section--bg" data-bg="img/section/section.jpg">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movies;
+use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,9 +89,10 @@ class HomeController extends Controller
         $data = request()->validate([
             'star' => 'required',
             'comment' => 'required',
+            'movie' => 'required'
         ]);
 
-        auth()->user()->movies()->ratings()->create($data);
+        auth()->user()->rating()->create($data);
 
         return redirect()->route('home');
     }
@@ -109,5 +111,17 @@ class HomeController extends Controller
 
     public function about(){
         return view('about');
+    }
+
+    public function search(Movies $movies){
+        $data = request()->validate([
+            'search' => 'required',
+        ]);
+        $genre = Movies::where('title',$data)->get('video');
+        return view('search',compact('genre'));
+    }
+
+    public function comments(Rating $rating){
+        return view('comments',compact('rating'));
     }
 }

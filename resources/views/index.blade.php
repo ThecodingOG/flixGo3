@@ -36,133 +36,108 @@
 <body class="body">
 
 
-	<!-- header -->
-	<header class="header">
-		<div class="header__wrap">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="header__content">
-							<!-- header logo -->
-							<a href="index.blade.php" class="header__logo">
-								<img src="img/logo.svg" alt="">
-							</a>
-							<!-- end header logo -->
+<!-- header -->
+<header class="header">
+    <div class="header__wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__content">
+                        <!-- header logo -->
+                        <a href="index.blade.php" class="header__logo">
+                            <img src="img/logo.svg" alt="">
+                        </a>
+                        <!-- end header logo -->
 
-							<!-- header nav -->
-							<ul class="header__nav">
-								<!-- dropdown -->
-								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                        <!-- header nav -->
+                        <ul class="header__nav">
+                            <!-- dropdown -->
+                            <li class="header__nav-item">
+                                <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
 
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
-										<li><a href="index.blade.php">Home slideshow bg</a></li>
-										<li><a href="index2.blade.php">Home static bg</a></li>
-									</ul>
-								</li>
-								<!-- end dropdown -->
+                                <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuHome">
+                                    <li><a href="/home">Home slideshow bg</a></li>
+                                    <li><a href="/home">Home static bg</a></li>
+                                </ul>
+                            </li>
+                            <!-- end dropdown -->
 
-								<!-- dropdown -->
-								<li class="header__nav-item">
-									<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuCatalog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
+                            <li class="header__nav-item">
+                                <a href="/details" class="header__nav-link">Details</a>
+                            </li>
 
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCatalog">
-										<li><a href="catalog1.blade.php">Catalog Grid</a></li>
-										<li><a href="catalog2.blade.php">Catalog List</a></li>
-										<li><a href="details1.blade.php">Details Movie</a></li>
-										<li><a href="details2.blade.php">Details TV Series</a></li>
-									</ul>
-								</li>
-								<!-- end dropdown -->
+                            <li class="header__nav-item">
+                                <a href="/comments" class="header__nav-link">Comments</a>
+                            </li>
 
-								<li class="header__nav-item">
-									<a href="pricing.blade.php" class="header__nav-link">Pricing Plan</a>
-								</li>
+                            <li class="header__nav-item">
+                                <a href="/about" class="header__nav-link">about</a>
+                            </li>
 
-								<li class="header__nav-item">
-									<a href="faq.blade.php" class="header__nav-link">Help</a>
-								</li>
 
-								<!-- dropdown -->
-								<li class="dropdown header__nav-item">
-									<a class="dropdown-toggle header__nav-link header__nav-link--more" href="#" role="button" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon ion-ios-more"></i></a>
 
-									<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuMore">
-										<li><a href="/about">About</a></li>
-                                        @if (Route::has('login'))
-                                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                                @auth
-                                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                                                @else
-                                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                            <li class="header__nav-item">
+                                <a href="/faq" class="header__nav-link">Help</a>
+                            </li>
 
-                                                    @if (Route::has('register'))
-                                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                                                    @endif
-                                                @endauth
-                                            </div>
+                        </ul>
+                        <!-- end header nav -->
+
+                        <!-- header auth -->
+                        <div class="header__auth">
+                            <form action="/search" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <input type="text" placeholder="Search Movie" name="search">
+                                <input type="submit" value="submit" name="submit">
+                            </form>
+
+
+                            @if (Route::has('login'))
+                                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                    @auth
+                                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Signed In</a>
+                                    @else
+                                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Log in</a>
+
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Register</a>
                                         @endif
-										<li><a href="/signin">Sign In</a></li>
-										<li><a href="/signup">Sign Up</a></li>
-										<li><a href="404.blade.php">404 Page</a></li>
-									</ul>
-								</li>
-								<!-- end dropdown -->
-							</ul>
-							<!-- end header nav -->
+                                    @endauth
+                                </div>
+                            @endif
+                        </div>
+                        <!-- end header auth -->
 
-							<!-- header auth -->
-							<div class="header__auth">
-								<button class="header__search-btn" type="button">
-									<i class="icon ion-ios-search"></i>
-								</button>
+                        <!-- header menu btn -->
+                        <button class="header__btn" type="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <!-- end header menu btn -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                @if (Route::has('login'))
-                                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                        @auth
-                                            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                                        @else
-                                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Log in</a>
+    <!-- header search -->
+    <form action="#" class="header__search">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header__search-content">
+                        <input type="text" placeholder="Search for a movie, TV Series that you are looking for">
 
-                                            @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline icon ion-ios-log-in header__sign-in">Register</a>
-                                            @endif
-                                        @endauth
-                                    </div>
-                                @endif
-							</div>
-							<!-- end header auth -->
-
-							<!-- header menu btn -->
-							<button class="header__btn" type="button">
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
-							<!-- end header menu btn -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- header search -->
-		<form action="#" class="header__search">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="header__search-content">
-							<input type="text" placeholder="Search for a movie, TV Series that you are looking for">
-
-							<button type="button">search</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-		<!-- end header search -->
-	</header>
-	<!-- end header -->
+                        <button type="button">search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- end header search -->
+</header>
+<!-- end header -->
 
 	<!-- home -->
 	<section class="home">
